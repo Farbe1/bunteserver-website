@@ -31,7 +31,53 @@
 }</script>
     <meta name="theme-color" content="#478ac9">
     <meta property="og:type" content="website">
-  </head>
+  <script src="https://www.google.com/recaptcha/api.js?render=6Le0w6EeAAAAAG2VwTr8vll39_t_LQNkXKyUteZP"></script>
+    <script>
+( function( grecaptcha, sitekey, actions ) {
+
+	var recaptcha = {
+
+		execute: function( action ) {
+			grecaptcha.execute(
+				sitekey,
+				{ action: action }
+			).then( function( token ) {
+				var forms = document.getElementsByTagName( 'form' );
+
+				for ( var i = 0; i < forms.length; i++ ) {
+					var fields = forms[ i ].getElementsByTagName( 'input' );
+
+					for ( var j = 0; j < fields.length; j++ ) {
+						var field = fields[ j ];
+
+						if ( 'recaptchaResponse' === field.getAttribute( 'name' ) ) {
+							field.setAttribute( 'value', token );
+							break;
+						}
+					}
+				}
+			} );
+		},
+
+		executeContact: function() {
+			recaptcha.execute( actions[ 'contact' ] );
+		}
+	};
+
+	grecaptcha.ready(
+		recaptcha.executeContact
+	);
+
+	document.addEventListener( 'change',
+		recaptcha.executeContact, false
+	);
+} )(
+	grecaptcha,
+	'6Le0w6EeAAAAAG2VwTr8vll39_t_LQNkXKyUteZP',
+	{"contact":"contact"}
+);
+    </script>
+</head>
   <body class="u-body u-xl-mode"><header class="u-clearfix u-header u-sticky u-sticky-6b6c u-white u-header" id="sec-1a2e"><div class="u-clearfix u-sheet u-sheet-1">
         <a href="https://nicepage.com" class="u-image u-logo u-image-1" data-image-width="171" data-image-height="171">
           <img src="images/1d2dcdead56ff4fdf8a8cf15f02335cee_2.png" class="u-logo-image u-logo-image-1">
